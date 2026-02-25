@@ -7,8 +7,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
-   :caption: Execution Modes
+   :caption: How Cosmos runs dbt
 
    Execution Modes <execution-modes>
    execution-modes-local-conflicts
@@ -22,31 +21,65 @@ Cosmos offers a number of configuration options to customize its behavior. For m
    Watcher Kubernetes Execution Mode <watcher-kubernetes-execution-mode>
 
 .. toctree::
-   :caption: Contents:
+   :caption: Translating dbt into Cosmos
 
-   dbt Fusion <dbt-fusion>
+   Source Nodes Rendering <source-nodes-rendering>
+   Post-rendering DAG customization <dag-customization>
+
+.. toctree::
+   :caption: Connecting to your database
+
+.. toctree::
+   :caption: Multi-project Setups
+
    Multi-Project Setups <multi-project>
+
+.. toctree::
+   :caption: Callbacks
+
+   Callbacks <callbacks>
+
+.. toctree::
+   :caption: Operators
+
+   Operator Args <operator-args>
+
+.. toctree::
+   :caption: Configuring tests
+
+   Testing Behavior <testing-behavior>
+
+.. toctree::
+   :caption: Optimizing Performance
+
+   Memory Optimization <memory_optimization>
+   dbt Fusion <dbt-fusion>
+   Selecting & Excluding <selecting-excluding>
+   Parsing Methods <parsing-methods>
+   Partial Parsing <partial-parsing>
+   Caching <caching>
+   Render Config <render-config>
+
+.. toctree::
+   :caption: Documentation
+
+   Generating Docs <generating-docs>
+   Hosting Docs <hosting-docs>
+
+.. toctree::
+   :caption: Configurations
 
    Project Config <project-config>
    Profile Config <profile-config>
    Execution Config <execution-config>
-   Render Config <render-config>
 
-   Parsing Methods <parsing-methods>
+
+.. toctree::
+   :caption: Customizing Airflow
+
    Configuring in Airflow <cosmos-conf>
    Configuring Lineage <lineage>
-   Generating Docs <generating-docs>
-   Hosting Docs <hosting-docs>
    Scheduling <scheduling>
-   Testing Behavior <testing-behavior>
-   Selecting & Excluding <selecting-excluding>
-   Partial Parsing <partial-parsing>
-   Source Nodes Rendering <source-nodes-rendering>
-   Post-rendering DAG customization <dag-customization>
-   Operator Args <operator-args>
    Compiled SQL <compiled-sql>
    Logging <logging>
-   Caching <caching>
    Task display name <task-display-name>
-   Callbacks <callbacks>
-   Memory Optimization <memory_optimization>

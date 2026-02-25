@@ -23,22 +23,6 @@
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption: Execution Modes
-
-   Execution Modes <execution-modes>
-   execution-modes-local-conflicts
-   Docker Execution Mode <docker>
-   Kubernetes Execution Mode <kubernetes>
-   Azure Container Instance Execution Mode <azure-container-instance>
-   AWS Container Run Job Execution Mode <aws-container-run-job>
-   GCP Cloud Run Job Execution Mode <gcp-cloud-run-job>
-   Airflow Async Execution Mode <async-execution-mode>
-   Watcher Execution Mode <watcher-execution-mode>
-   Watcher Kubernetes Execution Mode <watcher-kubernetes-execution-mode>
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
    :caption:
    Operators <operators>
    Custom Airflow Properties <custom-airflow-properties>
@@ -66,11 +50,11 @@ For more customization, check out the different execution modes that Cosmos supp
 
 For specific guides, see the following:
 
-- `Executing dbt DAGs with Docker Operators <docker.html>`__
-- `Executing dbt DAGs with KubernetesPodOperators <kubernetes.html>`__
-- `Executing dbt DAGs with Watcher Kubernetes Mode <watcher-kubernetes-execution-mode.html>`__
-- `Executing dbt DAGs with AzureContainerInstancesOperators <azure-container-instance.html>`__
-- `Executing dbt DAGs with GcpCloudRunExecuteJobOperators <gcp-cloud-run-job.html>`__
+- `Executing dbt DAGs with Docker Operators <configuration/docker.html>`__
+- `Executing dbt DAGs with KubernetesPodOperators <configuration/kubernetes.html>`__
+- `Executing dbt DAGs with Watcher Kubernetes Mode <configuration/watcher-kubernetes-execution-mode.html>`__
+- `Executing dbt DAGs with AzureContainerInstancesOperators <configuration/azure-container-instance.html>`__
+- `Executing dbt DAGs with GcpCloudRunExecuteJobOperators <configuration/gcp-cloud-run-job.html>`__
 
 
 Concepts Overview

@@ -21,35 +21,38 @@ Cosmos offers a number of configuration options to customize its behavior. For m
    Watcher Kubernetes Execution Mode <watcher-kubernetes-execution-mode>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Translating dbt into Cosmos
 
    Source Nodes Rendering <source-nodes-rendering>
    Post-rendering DAG customization <dag-customization>
 
 .. toctree::
-   :caption: Connecting to your database
-
-.. toctree::
+   :maxdepth: 1
    :caption: Multi-project Setups
 
    Multi-Project Setups <multi-project>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Callbacks
 
    Callbacks <callbacks>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Operators
 
    Operator Args <operator-args>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Configuring tests
 
    Testing Behavior <testing-behavior>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Optimizing Performance
 
    Memory Optimization <memory_optimization>
@@ -61,12 +64,14 @@ Cosmos offers a number of configuration options to customize its behavior. For m
    Render Config <render-config>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Documentation
 
    Generating Docs <generating-docs>
    Hosting Docs <hosting-docs>
 
 .. toctree::
+   :maxdepth: 1
    :caption: Configurations
 
    Project Config <project-config>
@@ -75,6 +80,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 
 .. toctree::
+   :maxdepth: 1
    :caption: Customizing Airflow
 
    Configuring in Airflow <cosmos-conf>

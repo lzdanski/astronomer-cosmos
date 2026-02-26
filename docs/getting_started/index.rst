@@ -15,7 +15,6 @@
 
    Run Cosmos <run-cosmos>
    astro
-   aws-container-run-job
    gcc
    mwaa
    open-source
@@ -23,7 +22,8 @@
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption:
+   :caption: Operators
+
    Operators <operators>
    Custom Airflow Properties <custom-airflow-properties>
 

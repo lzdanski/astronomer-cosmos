@@ -7,25 +7,29 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
-   :caption: How Cosmos runs dbt
-
-   Execution Modes <execution-modes>
-   execution-modes-local-conflicts
-   Docker Execution Mode <docker>
-   Kubernetes Execution Mode <kubernetes>
-   Azure Container Instance Execution Mode <azure-container-instance>
-   AWS Container Run Job Execution Mode <aws-container-run-job>
-   GCP Cloud Run Job Execution Mode <gcp-cloud-run-job>
-   Airflow Async Execution Mode <async-execution-mode>
-   Watcher Execution Mode <watcher-execution-mode>
-   Watcher Kubernetes Execution Mode <watcher-kubernetes-execution-mode>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Translating dbt into Cosmos
+   :caption: Translating dbt into Airflow
 
    Source Nodes Rendering <source-nodes-rendering>
    Post-rendering DAG customization <dag-customization>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: How Cosmos runs dbt
+
+   execution-modes-local-conflicts
+   run-dbt/execution-modes
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Configure tests
+
+   configure-tests/testing-behavior
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Callbacks
+
+   callbacks/callbacks
 
 .. toctree::
    :maxdepth: 1
@@ -35,21 +39,16 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
-   :caption: Callbacks
-
-   Callbacks <callbacks>
-
-.. toctree::
-   :maxdepth: 1
    :caption: Operators
 
    Operator Args <operator-args>
 
 .. toctree::
    :maxdepth: 1
-   :caption: Configuring tests
+   :caption: Documentation
 
-   Testing Behavior <testing-behavior>
+   dbt-docs/generating-docs
+   dbt-docs/hosting-docs
 
 .. toctree::
    :maxdepth: 1
@@ -62,13 +61,6 @@ Cosmos offers a number of configuration options to customize its behavior. For m
    Partial Parsing <partial-parsing>
    Caching <caching>
    Render Config <render-config>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Documentation
-
-   Generating Docs <generating-docs>
-   Hosting Docs <hosting-docs>
 
 .. toctree::
    :maxdepth: 1

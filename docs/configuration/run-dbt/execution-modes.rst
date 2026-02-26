@@ -3,6 +3,19 @@
 Execution Modes
 ===============
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Run dbt in the Airflow worker
+
+   airflow-worker/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Run dbt in a container
+
+   container/index
+
+
 Cosmos can run ``dbt`` commands using several different approaches, called ``execution modes``:
 
 1. **local**: Run ``dbt`` commands using a local ``dbt`` installation (default)

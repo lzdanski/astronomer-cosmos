@@ -110,7 +110,7 @@ for managing and scaling your data workflows.
 Getting Started with Airflow Async Execution Mode
 -------------------------------------------------
 
-See our :doc:`Getting Started with Airflow Async Execution Mode <configuration/async-execution-mode>` for details.
+See our :doc:`Getting Started with Airflow Async Execution Mode <configuration/run-dbt/airflow-worker/async-execution-mode>` for details.
 
 
 Airflow 3 compatibility

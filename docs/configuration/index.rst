@@ -7,6 +7,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Translating dbt into Airflow
 
    Source Nodes Rendering <source-nodes-rendering>
@@ -14,6 +15,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 3
+   :hidden:
    :caption: How Cosmos runs dbt
 
    execution-modes-local-conflicts
@@ -21,30 +23,35 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Configure tests
 
    configure-tests/testing-behavior
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Callbacks
 
    callbacks/callbacks
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Multi-project Setups
 
    Multi-Project Setups <multi-project>
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Operators
 
    Operator Args <operator-args>
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Documentation
 
    dbt-docs/generating-docs
@@ -52,6 +59,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Optimizing Performance
 
    Memory Optimization <memory_optimization>
@@ -64,6 +72,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Configurations
 
    Project Config <project-config>
@@ -73,6 +82,7 @@ Cosmos offers a number of configuration options to customize its behavior. For m
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
    :caption: Customizing Airflow
 
    Configuring in Airflow <cosmos-conf>

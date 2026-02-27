@@ -5,19 +5,18 @@
    :hidden:
    :caption: Cosmos Fundamentals
 
-   Cosmos fundamentals <cosmos-fundamentals>
-   Similar dbt and Airflow <dbt-airflow-concepts>
+   Similar dbt and Airflow concepts <dbt-airflow-concepts>
 
 .. toctree::
    :maxdepth: 1
    :hidden:
    :caption: Get started with Cosmos
 
-   Run Cosmos <run-cosmos>
-   astro
-   gcc
-   mwaa
-   open-source
+   Open-source Airflow <open-source>
+   Astro <astro>
+   Google Cloud Composer (GCC) <gcc>
+   Amazon Managed Workflows for Apache Airflow (MWAA) <mwaa>
+
 
 .. toctree::
    :maxdepth: 1

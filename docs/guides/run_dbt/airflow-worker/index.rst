@@ -5,5 +5,7 @@ Run dbt in an Airflow worker
    :maxdepth: 1
    :caption: Run dbt in an Airflow worker
 
+   local-execution-mode
+   execution-modes-local-conflicts
    async-execution-mode
    watcher-execution-mode

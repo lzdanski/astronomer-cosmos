@@ -1,7 +1,7 @@
 .. _gcp-cloud-run-job:
 
 GCP Cloud Run Job Execution Mode
-=======================================
+=================================
 .. versionadded:: 1.7
 
 This tutorial will guide you through the steps required to use Cloud Run Job instance as the Execution Mode for your dbt code with Astronomer Cosmos. This guide will walk you through the steps required to build the following architecture:

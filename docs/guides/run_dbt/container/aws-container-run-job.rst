@@ -1,7 +1,7 @@
 .. _aws-container-run-job:
 
-Getting Started with Astronomer Cosmos on AWS ECS
-==================================================
+AWS ECS Execution Mode
+======================
 
 Astronomer Cosmos provides a unified way to run containerized workloads across multiple cloud providers. In this guide, you’ll learn how to deploy and run a Cosmos job on AWS Elastic Container Service (ECS) using Fargate.
 Schematically, the guide will walk you through the steps required to build the following architecture:

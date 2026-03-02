@@ -1,23 +1,33 @@
 .. _execution-modes:
 
 Execution Modes
-===================
+===============
 
-Cosmos can run ``dbt`` commands using several different approaches, called ``execution modes``:
+*Execution modes* describe *where* and *how* Cosmos runs dbt commands.
 
-1. **local**: Run ``dbt`` commands using a local ``dbt`` installation (default)
-2. **virtualenv**: Run ``dbt`` commands from Python virtual environments managed by Cosmos
-3. **docker**: Run ``dbt`` commands from Docker containers managed by Cosmos (requires a pre-existing Docker image)
-4. **kubernetes**: Run ``dbt`` commands from Kubernetes Pods managed by Cosmos (requires a pre-existing Docker image)
-5. **aws_eks**: Run ``dbt`` commands from AWS EKS Pods managed by Cosmos (requires a pre-existing Docker image)
-6. **azure_container_instance**: Run ``dbt`` commands from Azure Container Instances managed by Cosmos (requires a pre-existing Docker image)
-7. **gcp_cloud_run_job**: Run ``dbt`` commands from GCP Cloud Run Job instances managed by Cosmos (requires a pre-existing Docker image)
-8. **aws_ecs**: Run ``dbt`` commands from AWS ECS instances managed by Cosmos (requires a pre-existing Docker image)
-9. **airflow_async**: (stable since Cosmos 1.9.0) Run the dbt resources from your dbt project asynchronously, by submitting the corresponding compiled SQLs to Apache Airflow's `Deferrable operators <https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/deferring.html>`__
-10. **watcher**: (experimental since Cosmos 1.11.0) Run a single ``dbt build`` command from a producer task and have sensor tasks to watch the progress of the producer, with improved DAG run time while maintaining the tasks lineage in the Airflow UI, and ability to retry failed tasks. Check the :ref:`watcher-execution-mode` for more details.
-11. **watcher_kubernetes**: (experimental since Cosmos 1.13.0) Combines the speed of the watcher execution mode with the isolation of Kubernetes. Check the :ref:`watcher-kubernetes-execution-mode` for more details.
 
-The choice of the ``execution mode`` can vary based on each user's needs and concerns. For more details, check each execution mode described below.
+On the Airflow worker or triggerer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **local**: Run ``dbt`` commands using a local ``dbt`` installation (default)
+- **watcher**: (experimental since Cosmos 1.11.0) Run a single ``dbt build`` command from a producer task and have sensor tasks to watch the progress of the producer, with improved DAG run time while maintaining the tasks lineage in the Airflow UI, and ability to retry failed tasks. Check the :ref:`watcher-execution-mode` for more details.
+- **virtualenv**: Run ``dbt`` commands from Python virtual environments managed by Cosmos
+- **airflow_async**: (stable since Cosmos 1.9.0) Run the dbt resources from your dbt project asynchronously, by submitting the corresponding compiled SQLs to Apache Airflow's `Deferrable operators <https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/deferring.html>`__
+
+In a container
+~~~~~~~~~~~~~~
+
+You can also execute dbt commands in a container outside of the Airflow environment.
+
+- **docker**: Run ``dbt`` commands from Docker containers managed by Cosmos (requires a pre-existing Docker image)
+- **kubernetes**: Run ``dbt`` commands from Kubernetes Pods managed by Cosmos (requires a pre-existing Docker image)
+- **aws_eks**: Run ``dbt`` commands from AWS EKS Pods managed by Cosmos (requires a pre-existing Docker image)
+- **azure_container_instance**: Run ``dbt`` commands from Azure Container Instances managed by Cosmos (requires a pre-existing Docker image)
+- **gcp_cloud_run_job**: Run ``dbt`` commands from GCP Cloud Run Job instances managed by Cosmos (requires a pre-existing Docker image)
+- **aws_ecs**: Run ``dbt`` commands from AWS ECS instances managed by Cosmos (requires a pre-existing Docker image)
+- **watcher_kubernetes**: (experimental since Cosmos 1.13.0) Combines the speed of the watcher execution mode with the isolation of Kubernetes. Check the :ref:`watcher-kubernetes-execution-mode` for more details.
+
+The choice of the ``execution mode`` can vary based on your needs and concerns.
 
 .. _execution-modes-comparison:
 
@@ -33,9 +43,17 @@ The choice of the ``execution mode`` can vary based on each user's needs and con
      - Fast
      - None
      - Yes
+   * - Watcher
+     - Very Fast
+     - None
+     - Yes
    * - Virtualenv
      - Medium
      - Lightweight
+     - Yes
+   * - Airflow Async
+     - Very Fast
+     - Medium
      - Yes
    * - Docker
      - Slow
@@ -61,46 +79,10 @@ The choice of the ``execution mode`` can vary based on each user's needs and con
      - Slow
      - High
      - No
-   * - Airflow Async
-     - Very Fast
-     - Medium
-     - Yes
-   * - Watcher
-     - Very Fast
-     - None
-     - Yes
    * - Watcher Kubernetes
      - Fast
      - High
      - No
-
-Local
------
-
-By default, Cosmos uses the ``local`` execution mode.
-
-The ``local`` execution mode is the fastest way to run Cosmos operators since they don't install ``dbt`` nor build docker containers. However, it may not be an option for users using managed Airflow services such as
-Google Cloud Composer, since Airflow and ``dbt`` dependencies can conflict (:ref:`execution-modes-local-conflicts`), the user may not be able to install ``dbt`` in a custom path.
-
-The ``local`` execution mode assumes a ``dbt`` binary is reachable within the Airflow worker node.
-
-If ``dbt`` was not installed as part of the Cosmos packages,
-users can define a custom path to ``dbt`` by declaring the argument ``dbt_executable_path``.
-
-.. note::
-    Starting in the 1.4 version, Cosmos tries to leverage the dbt partial parsing (``partial_parse.msgpack``) to speed up task execution.
-    This feature is bound to `dbt partial parsing limitations <https://docs.getdbt.com/reference/parsing#known-limitations>`_.
-    Learn more: :ref:`partial-parsing`.
-
-When using the ``local`` execution mode, Cosmos converts Airflow Connections into a native ``dbt`` profiles file (``profiles.yml``).
-
-Example of how to use, for instance, when ``dbt`` was installed together with Cosmos:
-
-.. literalinclude:: ../../../dev/dags/basic_cosmos_dag.py
-    :language: python
-    :start-after: [START local_example]
-    :end-before: [END local_example]
-
 
 Virtualenv
 ----------
@@ -109,7 +91,7 @@ If you're using managed Airflow on GCP (Cloud Composer), for instance, we recomm
 
 The ``virtualenv`` mode isolates the Airflow worker dependencies from ``dbt`` by managing a Python virtual environment created during task execution and deleted afterwards.
 
-In this case, users are responsible for declaring which version of ``dbt`` they want to use by giving the argument ``py_requirements``. This argument can be set directly in operator instances or when instantiating ``DbtDag`` and ``DbtTaskGroup`` as part of ``operator_args``.
+In this case, you are responsible for declaring which version of ``dbt`` to use by giving the argument ``py_requirements``. This argument can be set directly in operator instances or when instantiating ``DbtDag`` and ``DbtTaskGroup`` as part of ``operator_args``.
 
 Similar to the ``local`` execution mode, Cosmos converts Airflow Connections into a way ``dbt`` understands them by creating a ``dbt`` profile file (``profiles.yml``).
 Also similar to the ``local`` execution mode, Cosmos will by default attempt to use a ``partial_parse.msgpack`` if one exists to speed up parsing.
@@ -117,7 +99,7 @@ Also similar to the ``local`` execution mode, Cosmos will by default attempt to 
 Some drawbacks of this approach:
 
 - It is slower than ``local`` because it creates a new Python virtual environment for each Cosmos dbt task run.
-- If dbt is unavailable in the Airflow scheduler, the default ``LoadMode.DBT_LS`` will not work. In this scenario, users must use a :ref:`parsing-methods` that does not rely on dbt, such as ``LoadMode.MANIFEST``.
+- If dbt is unavailable in the Airflow scheduler, the default ``LoadMode.DBT_LS`` will not work. In this scenario, you must use a :ref:`parsing-methods` that does not rely on dbt, such as ``LoadMode.MANIFEST``.
 - Only ``InvocationMode.SUBPROCESS`` is supported currently, attempt to use ``InvocationMode.DBT_RUNNER`` will raise error.
 
 Example of how to use:
@@ -130,14 +112,14 @@ Example of how to use:
 Docker
 ------
 
-The ``docker`` approach assumes users have a previously created Docker image, which should contain all the ``dbt`` pipelines and a ``profiles.yml``, managed by the user.
+The ``docker`` approach assumes you previously created Docker image, which should contain all the ``dbt`` pipelines and a ``profiles.yml`` that you manage.
 
 The user has better environment isolation than when using ``local`` or ``virtualenv`` modes, but also more responsibility (ensuring the Docker container used has up-to-date files and managing secrets potentially in multiple places).
 
 The other challenge with the ``docker`` approach is if the Airflow worker is already running in Docker, which sometimes can lead to challenges running `Docker in Docker <https://devops.stackexchange.com/questions/676/why-is-docker-in-docker-considered-bad>`__.
 
 This approach can be significantly slower than ``virtualenv`` since it may have to build the ``Docker`` container, which is slower than creating a Virtualenv with ``dbt-core``.
-If dbt is unavailable in the Airflow scheduler, the default ``LoadMode.DBT_LS`` will not work. In this scenario, users must use a :ref:`parsing-methods` that does not rely on dbt, such as ``LoadMode.MANIFEST``.
+If dbt is unavailable in the Airflow scheduler, the default ``LoadMode.DBT_LS`` will not work. In this scenario,  must use a :ref:`parsing-methods` that does not rely on dbt, such as ``LoadMode.MANIFEST``.
 
 Check the step-by-step guide on using the ``docker`` execution mode at :ref:`docker`.
 
@@ -240,11 +222,11 @@ GCP Cloud Run Job
 ------------------------
 .. versionadded:: 1.7
 
-The ``gcp_cloud_run_job`` execution mode is particularly useful for users who prefer to run their ``dbt`` commands on Google Cloud infrastructure, taking advantage of Cloud Run's scalability, isolation, and managed service capabilities.
+The ``gcp_cloud_run_job`` execution mode is particularly useful if you prefer to run their ``dbt`` commands on Google Cloud infrastructure, taking advantage of Cloud Run's scalability, isolation, and managed service capabilities.
 
 For the ``gcp_cloud_run_job`` execution mode to work, a Cloud Run Job instance must first be created using a previously built Docker container. This container should include the latest ``dbt`` pipelines and profiles. You can find more details in the `Cloud Run Job creation guide <https://cloud.google.com/run/docs/create-jobs>`__ .
 
-This execution mode allows users to run ``dbt`` core CLI commands in a Google Cloud Run Job instance. This mode leverages the ``CloudRunExecuteJobOperator`` from the Google Cloud Airflow provider to execute commands within a Cloud Run Job instance, where ``dbt`` is already installed. Similarly to the ``Docker`` and ``Kubernetes`` execution modes, a Docker container should be available, containing the up-to-date ``dbt`` pipelines and profiles.
+This execution mode allows you to run ``dbt`` core CLI commands in a Google Cloud Run Job instance. This mode leverages the ``CloudRunExecuteJobOperator`` from the Google Cloud Airflow provider to execute commands within a Cloud Run Job instance, where ``dbt`` is already installed. Similarly to the ``Docker`` and ``Kubernetes`` execution modes, a Docker container should be available, containing the up-to-date ``dbt`` pipelines and profiles.
 
 Each task will create a new Cloud Run Job execution, giving full isolation. The separation of tasks adds extra overhead; however, that can be mitigated by using the ``concurrency`` parameter in ``DbtDag``, which will result in parallelized execution of ``dbt`` models.
 
@@ -270,7 +252,7 @@ Using ``AWS Elastic Container Service (ECS)`` as the execution mode provides an 
 
 This execution mode requires the user to have an AWS environment configured to run ECS tasks (see :ref:``aws-ecs`` for more details on the exact requirements). Similar to the ``Docker`` and ``Kubernetes`` execution modes, a Docker container should be available, containing the up-to-date ``dbt`` pipelines and profiles.
 
-Each task will create a new ECS task execution, providing full isolation. However, this separation introduces some overhead in execution time due to container startup and provisioning. For users who require faster execution times, configuring appropriate ECS task definitions and cluster optimizations can help mitigate these delays.
+Each task will create a new ECS task execution, providing full isolation. However, this separation introduces some overhead in execution time due to container startup and provisioning. If you require faster execution times, configuring appropriate ECS task definitions and cluster optimizations can help mitigate these delays.
 
 Please refer to the step-by-step guide for using AWS ECS as the execution mode.
 
@@ -303,7 +285,7 @@ Airflow Async
 
 .. versionadded:: 1.9.0
 
-Although this execution mode was introduced in Cosmos 1.9, we strongly encourage users to use Cosmos 1.11, which has significant performance improvements.
+Although this execution mode was introduced in Cosmos 1.9, we strongly encourage you to use Cosmos 1.11, which has significant performance improvements.
 In comparison to the ``local``, the ``airflow_async`` execution mode can reduce the execution time of a dbt project by up to 36%.
 
 The ``airflow_async`` execution mode is a way to run the dbt resources from your dbt project using Apache Airflow's

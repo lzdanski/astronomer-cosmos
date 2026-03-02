@@ -1,7 +1,7 @@
 .. _kubernetes:
 
 Kubernetes Execution Mode
-==============================================
+==========================
 
 The following tutorial illustrates how to run the Cosmos dbt Kubernetes Operator using a local Kubernetes (K8s) cluster. It assumes the following:
 

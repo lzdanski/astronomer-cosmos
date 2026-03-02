@@ -1,7 +1,7 @@
 .. _docker:
 
 Docker Execution Mode
-========================================
+=====================
 
 The following tutorial illustrates how to run the Cosmos dbt Docker Operators and the required setup for them.
 

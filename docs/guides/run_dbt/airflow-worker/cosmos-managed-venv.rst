@@ -1,3 +1,5 @@
+.. _cosmos-managed-venv:
+
 Cosmos-managed virtual environment
 ----------------------------------
 
@@ -18,7 +20,7 @@ Some drawbacks of this approach:
 
 Example of how to use:
 
-.. literalinclude:: ../../../dev/dags/example_virtualenv.py
+.. literalinclude:: ../../../../dev/dags/example_virtualenv.py
    :language: python
    :start-after: [START virtualenv_example]
    :end-before: [END virtualenv_example]

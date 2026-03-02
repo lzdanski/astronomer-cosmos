@@ -31,6 +31,9 @@ The choice of the ``execution mode`` can vary based on your needs and concerns.
 
 .. _execution-modes-comparison:
 
+Execution modes comparison
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. list-table:: Execution Modes Comparison
    :widths: 25 25 25 25
    :header-rows: 1
@@ -304,7 +307,7 @@ Check the :ref:`watcher-kubernetes-execution-mode` for more details.
 .. _invocation_modes:
 
 Invocation Modes
-================
+~~~~~~~~~~~~~~~~
 .. versionadded:: 1.4
 
 For ``ExecutionMode.LOCAL`` execution mode, Cosmos supports two invocation modes for running dbt:

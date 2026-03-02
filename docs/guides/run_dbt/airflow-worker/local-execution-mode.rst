@@ -19,7 +19,7 @@ When using the ``local`` execution mode, Cosmos converts Airflow Connections int
 
 Example of how to use, for instance, when ``dbt`` was installed together with Cosmos:
 
-.. literalinclude:: ../../../dev/dags/basic_cosmos_dag.py
+.. literalinclude:: ../../../../dev/dags/basic_cosmos_dag.py
     :language: python
     :start-after: [START local_example]
     :end-before: [END local_example]

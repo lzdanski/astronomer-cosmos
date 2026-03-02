@@ -6,6 +6,6 @@ Run dbt in an Airflow worker
    :caption: Run dbt in an Airflow worker
 
    local-execution-mode
-   execution-modes-local-conflicts
-   async-execution-mode
    watcher-execution-mode
+   cosmos-managed-venv
+   async-execution-mode

@@ -19,7 +19,7 @@ In a container
 
 You can also execute dbt commands in a container outside of the Airflow environment.
 
-- **docker**: Run ``dbt`` commands from Docker containers managed by Cosmos (requires a pre-existing Docker image)
+- `docker <container/docker.html>`_ : Run ``dbt`` commands from Docker containers managed by Cosmos (requires a pre-existing Docker image)
 - **kubernetes**: Run ``dbt`` commands from Kubernetes Pods managed by Cosmos (requires a pre-existing Docker image)
 - **aws_eks**: Run ``dbt`` commands from AWS EKS Pods managed by Cosmos (requires a pre-existing Docker image)
 - **azure_container_instance**: Run ``dbt`` commands from Azure Container Instances managed by Cosmos (requires a pre-existing Docker image)
@@ -86,37 +86,6 @@ Execution modes comparison
      - Fast
      - High
      - No
-
-
-Docker
-------
-
-The ``docker`` approach assumes you previously created Docker image, which should contain all the ``dbt`` pipelines and a ``profiles.yml`` that you manage.
-
-The user has better environment isolation than when using ``local`` or ``virtualenv`` modes, but also more responsibility (ensuring the Docker container used has up-to-date files and managing secrets potentially in multiple places).
-
-The other challenge with the ``docker`` approach is if the Airflow worker is already running in Docker, which sometimes can lead to challenges running `Docker in Docker <https://devops.stackexchange.com/questions/676/why-is-docker-in-docker-considered-bad>`__.
-
-This approach can be significantly slower than ``virtualenv`` since it may have to build the ``Docker`` container, which is slower than creating a Virtualenv with ``dbt-core``.
-If dbt is unavailable in the Airflow scheduler, the default ``LoadMode.DBT_LS`` will not work. In this scenario,  must use a :ref:`parsing-methods` that does not rely on dbt, such as ``LoadMode.MANIFEST``.
-
-Check the step-by-step guide on using the ``docker`` execution mode at :ref:`docker`.
-
-Example DAG:
-
-.. code-block:: python
-
-  docker_cosmos_dag = DbtDag(
-      # ...
-      execution_config=ExecutionConfig(
-          execution_mode=ExecutionMode.DOCKER,
-      ),
-      operator_args={
-          "image": "dbt-jaffle-shop:1.0.0",
-          "network_mode": "bridge",
-      },
-  )
-
 
 Kubernetes
 ----------

@@ -87,34 +87,6 @@ Execution modes comparison
      - No
 
 
-Azure Container Instance
-------------------------
-.. versionadded:: 1.4
-
-Similar to the ``kubernetes`` approach, using ``Azure Container Instances`` as the execution mode gives a very isolated way of running ``dbt``, since the ``dbt`` run itself is run within a container running in an Azure Container Instance.
-
-This execution mode requires the user has an Azure environment that can be used to run Azure Container Groups in (see :ref:`azure-container-instance` for more details on the exact requirements). Similarly to the ``Docker`` and ``Kubernetes`` execution modes, a Docker container should be available, containing the up-to-date ``dbt`` pipelines and profiles.
-
-Each task will create a new container on Azure, giving full isolation. This, however, comes at the cost of speed, as this separation of tasks introduces some overhead. Please checkout the step-by-step guide for using Azure Container Instance as the execution mode
-
-
-.. code-block:: python
-
-    docker_cosmos_dag = DbtDag(
-        # ...
-        execution_config=ExecutionConfig(
-            execution_mode=ExecutionMode.AZURE_CONTAINER_INSTANCE
-        ),
-        operator_args={
-            "ci_conn_id": "aci",
-            "registry_conn_id": "acr",
-            "resource_group": "my-rg",
-            "name": "my-aci-{{ ti.task_id.replace('.','-').replace('_','-') }}",
-            "region": "West Europe",
-            "image": "dbt-jaffle-shop:1.0.0",
-        },
-    )
-
 GCP Cloud Run Job
 ------------------------
 .. versionadded:: 1.7

@@ -10,4 +10,5 @@ Optimize your Cosmos Performance
    partial-parsing
    memory_optimization
    selecting-excluding
+   invocation_modes
    caching

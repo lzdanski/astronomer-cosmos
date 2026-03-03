@@ -5,9 +5,11 @@ Run dbt in a container
    :maxdepth: 1
    :caption: Run dbt in a container
 
-   aws-container-run-job
-   azure-container-instance
    docker
-   gcp-cloud-run-job
    kubernetes
    watcher-kubernetes-execution-mode
+   azure-container-instance
+   aws-container-run-job
+   aws-eks
+   gcp-cloud-run-job
+

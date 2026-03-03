@@ -1,6 +1,6 @@
 .. _async-execution-mode:
 
-Airflow Async Execution Mode
+Airflow async execution mode
 ============================
 
 This execution mode can reduce the runtime by 35% in comparison to Cosmos ``LOCAL`` execution mode, but is currently only available for BigQuery. While this mode was introduced in Cosmos 1.9, we strongly encourage users to use Cosmos 1.11, which has significant performance improvements.

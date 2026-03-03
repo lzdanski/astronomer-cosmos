@@ -1,6 +1,6 @@
 .. _local-execution:
 
-Local Execution Mode
+Local execution mode
 ====================
 
 By default, Cosmos uses the ``local`` execution mode.

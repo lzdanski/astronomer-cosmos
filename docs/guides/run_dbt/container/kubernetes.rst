@@ -1,6 +1,6 @@
 .. _kubernetes:
 
-Kubernetes Execution Mode
+Kubernetes execution mode
 ==========================
 
 The ``kubernetes`` execution mode provides a very isolated method to run ``dbt`` from within a Kubernetes Pod, usually in a separate host.

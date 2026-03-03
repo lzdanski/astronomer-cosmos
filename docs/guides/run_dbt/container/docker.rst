@@ -1,6 +1,6 @@
 .. _docker:
 
-Docker Execution Mode
+Docker execution mode
 =====================
 
 The ``docker`` approach assumes you previously created Docker image, which contains all the ``dbt`` pipelines and a ``profiles.yml`` that you manage.

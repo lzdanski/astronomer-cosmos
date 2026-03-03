@@ -5,7 +5,7 @@ Invocation Modes
 
 .. versionadded:: 1.4
 
-For ``ExecutionMode.LOCAL`` execution mode, Cosmos supports two invocation modes for running dbt:
+For ``ExecutionMode.LOCAL`` and ``ExecutionMode.WATCHER`` execution mode, Cosmos supports two invocation modes for running dbt:
 
 1. ``InvocationMode.SUBPROCESS``: In this mode, Cosmos runs dbt cli commands using the Python ``subprocess`` module and parses the output to capture logs and to raise exceptions.
 

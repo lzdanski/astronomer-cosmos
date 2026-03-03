@@ -1,7 +1,7 @@
 .. _watcher-kubernetes-execution-mode:
 
-``ExecutionMode.WATCHER_KUBERNETES``: High-Performance dbt Execution in Kubernetes
-===================================================================================
+Watcher Kubernetes execution mode
+=================================
 
 .. versionadded:: 1.13.0
 

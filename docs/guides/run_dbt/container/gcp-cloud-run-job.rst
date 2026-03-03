@@ -1,6 +1,6 @@
 .. _gcp-cloud-run-job:
 
-GCP Cloud Run Job Execution Mode
+GCP Cloud Run Job execution mode
 =================================
 .. versionadded:: 1.7
 

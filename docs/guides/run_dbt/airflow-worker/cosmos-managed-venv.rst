@@ -1,7 +1,7 @@
 .. _cosmos-managed-venv:
 
-Cosmos-managed virtual environment
-----------------------------------
+Cosmos-managed virtual environment execution mode
+========================================================
 
 If you're using managed Airflow, we recommend you use the ``virtualenv`` execution mode.
 

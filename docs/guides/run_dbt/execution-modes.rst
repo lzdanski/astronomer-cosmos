@@ -86,23 +86,6 @@ Execution modes comparison
      - High
      - No
 
-Kubernetes
-----------
-
-The ``kubernetes`` approach is a very isolated way of running ``dbt`` since the ``dbt`` run commands from within a Kubernetes Pod, usually in a separate host.
-
-It assumes the user has a Kubernetes cluster. It also expects the user to ensure the Docker container has up-to-date ``dbt`` pipelines and profiles, potentially leading the user to declare secrets in two places (Airflow and Docker container).
-
-The ``Kubernetes`` deployment may be slower than ``Docker`` and ``Virtualenv`` assuming that the container image is built (which is slower than creating a Python ``virtualenv`` and installing ``dbt-core``) and the Airflow task needs to spin up a new ``Pod`` in Kubernetes.
-
-Check the step-by-step guide on using the ``kubernetes`` execution mode at :ref:`kubernetes`.
-
-Example DAG:
-
-.. literalinclude:: ../../../dev/dags/jaffle_shop_kubernetes.py
-   :language: python
-   :start-after: [START kubernetes_seed_example]
-   :end-before: [END kubernetes_seed_example]
 
 Azure Container Instance
 ------------------------

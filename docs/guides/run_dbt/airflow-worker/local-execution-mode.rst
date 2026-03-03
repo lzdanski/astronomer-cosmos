@@ -1,3 +1,5 @@
+.. _local-execution:
+
 Local Execution Mode
 ====================
 

@@ -68,7 +68,7 @@ redirects = {
     "getting_started/azure-container-instance": "../guides/run_dbt/container/azure-container-instance.html",
     "getting_started/custom-airflow-properties": "../run_dbt/airflow-worker/custom-airflow-properties.html",
     "getting_started/docker": "../guides/run_dbt/container/docker.html",
-    "getting_started/execution-modes-local-conflicts": "../guides/run_dbt/airflow-worker/execution-modes-local-conflicts.html",
+    "getting_started/execution-modes-local-conflicts": "../reference/troubleshooting/execution-modes-local-conflicts.html",
     "getting_started/execution-modes": "../guides/run_dbt/execution-modes.html",
     "getting_started/gcp-cloud-run-job": "../guides/run_dbt/container/gcp-cloud-run-job.html",
     "getting_started/kubernetes": "../guides/run_dbt/container/kubernetes.html",

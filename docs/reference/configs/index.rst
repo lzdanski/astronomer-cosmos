@@ -1,6 +1,6 @@
 
-# Configurations - Uncomment this section to turn the page into a dropdown navigation
-# ==============
+Configurations
+==============
 
 .. toctree::
    :maxdepth: 1

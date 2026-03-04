@@ -7,3 +7,10 @@ Reference
    :caption: Configurations
 
    configs/index
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Troubleshooting
+
+   troubleshooting/index

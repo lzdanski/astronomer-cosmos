@@ -5,6 +5,7 @@
    :hidden:
    :caption: Cosmos Fundamentals
 
+   Choosing an execution mode <execution-modes>
    Similar dbt and Airflow concepts <dbt-airflow-concepts>
 
 .. toctree::
@@ -44,15 +45,6 @@ Execution Methods
 -----------------
 
 For more customization, check out the different execution modes that Cosmos supports on the `Execution Modes <execution-modes.html>`__ page.
-
-For specific guides, see the following:
-
-- `Executing dbt DAGs with DockerOperators <../../guides/run_dbt/container/docker.html>`__
-- `Executing dbt DAGs with KubernetesPodOperators <../../guides/run_dbt/container/kubernetes.html>`__
-- `Executing dbt DAGs with Watcher Kubernetes Mode <../../guides/run_dbt/container/watcher-kubernetes-execution-mode.html>`__
-- `Executing dbt DAGs with AzureContainerInstancesOperators <../../guides/run_dbt/container/azure-container-instance.html>`__
-- `Executing dbt DAGs with GcpCloudRunExecuteJobOperators <../../guides/run_dbt/container/gcp-cloud-run-job.html>`__
-
 
 Concepts Overview
 -----------------

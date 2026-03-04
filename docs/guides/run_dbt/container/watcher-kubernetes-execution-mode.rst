@@ -1,7 +1,8 @@
 .. _watcher-kubernetes-execution-mode:
 
-Watcher Kubernetes execution mode
-=================================
+
+Watcher Kubernetes execution mode (Experimental)
+================================================
 
 .. versionadded:: 1.13.0
 

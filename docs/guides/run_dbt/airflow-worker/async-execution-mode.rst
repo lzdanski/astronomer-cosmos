@@ -213,7 +213,7 @@ The ``run`` tasks will run asynchronously via the deferrable operator, freeing u
 
 
 Control where to upload the SQL files
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For optimal performance we encourage to keep Cosmos standard behaviour (introduced in 1.11), which is to upload the SQL files to XCom, instead of a remote object location.
 
@@ -228,7 +228,7 @@ However, if you want to upload the SQL files to a remote object location instead
 
 
 Limitations
------------
+~~~~~~~~~~~
 
 
 1. **Limited to dbt models**: Only dbt resource type models are run asynchronously using Airflow deferrable operators. Other resource types are executed synchronously, similar to the local execution mode.

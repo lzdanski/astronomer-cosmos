@@ -18,6 +18,7 @@ Setup
 +++++
 
 In this guide, you’ll learn how to deploy and run a Cosmos job on AWS Elastic Container Service (ECS) using Fargate.
+
 Schematically, the guide will walk you through the steps required to build the following architecture:
 
 .. figure:: https://github.com/astronomer/astronomer-cosmos/raw/main/docs/_static/cosmos_aws_ecs_schematic.png

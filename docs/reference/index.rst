@@ -1,5 +1,7 @@
+
 Reference
 =========
+
 
 .. toctree::
    :maxdepth: 1
@@ -7,3 +9,11 @@ Reference
    :caption: Configurations
 
    configs/index
+
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Profile Configs
+
+   profiles/index

@@ -1,13 +1,13 @@
 
-# Configurations - Uncomment this section to turn the page into a dropdown navigation
-# ==============
+Configuration References
+========================
+
 
 .. toctree::
    :maxdepth: 1
    :hidden:
    :caption: Configurations
 
-   cosmos-conf
-   execution-config
-   profile-config
-   project-config
+   Project Config <project-config>
+   Execution Config <execution-config>
+   Cosmos Config <cosmos-conf>

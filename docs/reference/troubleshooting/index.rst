@@ -13,7 +13,7 @@ Common issues
 ~~~~~~~~~~~~~
 
 I cannot see my DbtDag
-----------------------
+-----------------------
 
 1. Check to see if your Dag files contain the words ``Dag`` and ``Airflow``.
 2. Set the Airflow environment variable, ``AIRFLOW__CORE__DAG_DISCOVERY_SAFE_MODE=False``.
@@ -52,12 +52,12 @@ Improve task execution time
 
 To reduce the task execution time,in addition to the Dag parsing optimizations:
 
-1. Use the `airflow_async execution mode <../../guides/run_dbt/airflow-worker/async-execution-mode.html>`_. This mode is currently only available for BigQuery
-2. Use the `local execution mode <../../guides/run_dbt/airflow-worker/local.html>`_.
+1. Use the `airflow_async execution mode <../../guides/run_dbt/airflow-worker/async-execution-mode.html>`_. This mode is currently only available for BigQuery.
+2. Use the `local execution mode <../../guides/run_dbt/airflow-worker/local-execution-mode.html>`_.
 3. Run ``dbt deps`` as part of the CI, but because this duplicates the process in Cosmos, be sure to disable it in Cosmos.
 4. dbt Core optimization, like using dbt as a library instead of a binary with `RenderConfig <../../guides/translate_dbt_to_airflow/render-config.html>`_. Use this to install dbt and its adapters in the ``requirements.txt``, but this might not work depending on dependency conflicts.
-6. For non-critical parts of the pipeline, consider grouping tasks by instantiating Cosmos operators
-5. Try to use `dbt Fusion <../../guides/dbt_setup/dbt-fusion.html>`_ with Cosmos, which can improve the performance of larger dbt projects.
+5. For non-critical parts of the pipeline, consider grouping tasks by instantiating Cosmos operators.
+6. Try to use `dbt Fusion <../../guides/dbt_setup/dbt-fusion.html>`_ with Cosmos, which can improve the performance of larger dbt projects.
 
 Set up dbt core installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,13 +65,14 @@ Set up dbt core installation
 The following workflow can help you decide how to install dbt core for your Cosmos implementation.
 
 1. Determine if you can install dbt and Airflow in the same Python environment
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-------------------------------------------------------------------------------
 
 If you can, no cadditional onfiguration is needed.
 
 By default, Cosmos uses:
+
 - ``ExecutionMode.LOCAL``
-- ``InvocationMode.DBT_RUNNER``, which can run dbt commands 40% faster than ****
+- ``InvocationMode.DBT_RUNNER``
 
 .. code-block:: python
 
@@ -83,7 +84,7 @@ By default, Cosmos uses:
       deactivate
 
 2. Decide if you can create and manage a dedicated Python environment alongside Airflow
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+---------------------------------------------------------------------------------------
 
 To use a dedicated Python virtual environment, you might need to configure two additional steps:
 
@@ -106,7 +107,7 @@ To use a dedicated Python virtual environment, you might need to configure two a
    ))
 
 3. Decide if you want to install dbt in Airflow nodes
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----------------------------------------------------
 
 If you want to install dbt in Airflow nodes, Cosmos can create and manage the dbt Python virtualenv for you with ``ExecutionMode.VIRTUALENV``.
 
@@ -126,7 +127,7 @@ If you want to install dbt in Airflow nodes, Cosmos can create and manage the db
    )
 
 4. Use Cosmos without dbt in the Airflow nodes
-++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------
 
 You don’t have to use dbt in the Airflow nodes to benefit from Cosmos. Instead you can leverage ``LoadMode.DBT_MANIFEST`` or ``ExecutionMode.KUBERNETES``.
 

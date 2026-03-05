@@ -5,10 +5,6 @@ Optimize your Cosmos Performance
 
 You can adjust how Cosmos works in your project setup to improve overall performance, and maximize the speed and resource use of Dag and dbt command execution.
 
-#--- dbt command execution
-#-- ~~~~~~~~~~~~~~~~~~~~~
-#--- This section does not have any existing content to include yet.
-
 Cosmos Dag-parsing
 ~~~~~~~~~~~~~~~~~~
 

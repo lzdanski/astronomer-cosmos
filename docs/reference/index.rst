@@ -3,11 +3,17 @@ Reference
 =========
 
 .. toctree::
+   :maxdepth: 0
+   :hidden:
+
+   self
+
+
+.. toctree::
    :maxdepth: 1
    :hidden:
    :caption: Configurations
 
-   self
    configs/index
 
 

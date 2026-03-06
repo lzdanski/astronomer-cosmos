@@ -57,6 +57,6 @@ Cosmos offers a number of configuration options to customize its behavior. For m
    :caption: Cosmos DevEx
 
    cosmos_devex/lineage
-   cosmos_devex/compiled-sql
+   Viewing dbt SQL in Airflow UI <cosmos_devex/compiled-sql>
    cosmos_devex/logging
    cosmos_devex/task-display-name

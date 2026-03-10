@@ -4,6 +4,7 @@ msgpack
 apache-airflow>=2.9.0
 pydata-sphinx-theme>=0.16.0
 sphinx
+sphinxcontrib.mermaid
 sphinx-autoapi
 sphinx-autobuild
 sphinx-reredirects

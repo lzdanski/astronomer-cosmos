@@ -23,6 +23,7 @@ author = "Astronomer"
 
 extensions = [
     # "autoapi.extension",
+    "sphinxcontrib.mermaid",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx_reredirects",
@@ -53,6 +54,8 @@ html_theme_options = {
 }
 
 generate_mapping_docs()
+
+
 
 # -- Begin docs redirect section
 # -- To test redirects in a local build, paste the redirect source, and append .html to the end.

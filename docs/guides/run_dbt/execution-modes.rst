@@ -11,10 +11,12 @@ There are two categories of execution modes:
 
 2. **Execute dbt commands in a container** This type of execution mode offers high levels of environment isolation and also allows you to run dbt from either containers or external jobs, in both on-premises environments and various cloud services. There are multiple options for this type of execution mode: ``docker``, ``kubernetes``, ``watcher_kubernetes``, ``aws_ecs``, ``aws_eks``, ``azure_container_instance``, and ``gcp_cloud_run_job``.
 
-Choose between local and container execution mode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Choose between local and container execution mode type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+To decide which execution mode you want to use, first select whether you want to use one that runs on the Airflow worker node, or to use one that runs in a container.
 
+The following decision tree can help you pick which type works best for your Cosmos project by answering some questions about your setup.
 
 .. mermaid::
 
@@ -58,7 +60,6 @@ Choose between local and container execution mode
       class J,L,K,M result
 
 
-
 On the Airflow worker
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -81,6 +82,60 @@ There are four execution mode options that run on the Airflow worker:
 
 - `airflow_async <./airflow-worker/async-execution-mode.html>`_: (Stable since Cosmos 1.9.0) Optimized for worker efficiency if you have long-running dbt commands. Run the dbt resources from your dbt project asynchronously, by submitting the corresponding compiled SQLs to Apache Airflow's `Deferrable operators <https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/deferring.html>`__.
 
+Choose your local execution mode type
+++++++++++++++++++++++++++++++++++++++
+
+If you want to use an execution mode that can run in the Airflow worker node, use the following workflow to choose how to customize its behavior or decide that you want to use the container type of execution mode.
+
+.. mermaid::
+
+    %%{init: {'theme':'base', 'themeVariables': { 'fontSize': '15px'}}}%%
+    flowchart TD
+
+      A([Execution on Airflow Worker Node])
+
+      B[Try experimental high-performance mode?]
+      C[ExecutionMode.WATCHER]
+
+      D[Long running dbt commands and BigQuery?]
+      E[ExecutionMode.AIRFLOW_ASYNC]
+
+      F[Is dbt installed in the Airflow environment?]
+      G[ExecutionMode.LOCAL using Airflow Python environment]
+
+      H[Is there a pre-created dbt virtualenv?]
+      I[ExecutionMode.LOCAL using custom dbt_executable_path]
+
+      J[Let Cosmos create virtualenvs per execution?]
+      K[ExecutionMode.VIRTUALENV]
+
+      L[Use container execution instead]
+
+      A --> B
+      B -->|Yes| C
+      B -->|No| D
+
+      D -->|Yes| E
+      D -->|No| F
+
+      F -->|Yes| G
+      F -->|No| H
+
+      H -->|Yes| I
+      H -->|No| J
+
+      J -->|Yes| K
+      J -->|No| L
+
+      classDef decision fill:#fff3cd,stroke:#b58900,color:#333
+      classDef action fill:#e8f5e9,stroke:#2e7d32,color:#333
+      classDef result fill:#e3f2fd,stroke:#1565c0,color:#333
+
+      class B,D,F,H,J decision
+      class G,I,K action
+      class C,E,L result
+
+
 In a container
 ~~~~~~~~~~~~~~
 
@@ -93,6 +148,73 @@ You can also execute dbt commands in a container. Choosing these kinds of execut
 - `aws_eks <./container/aws-eks.html>`_: Run ``dbt`` commands from AWS EKS Pods managed by Cosmos.
 - `azure_container_instance <./container/azure-container-instance.html>`_: Run ``dbt`` commands in Azure Container Instances.
 - `gcp_cloud_run_job <./container/gcp-cloud-run-job.html>`_: Run ``dbt`` commands via a container managed by GCP Cloud Run Job.
+
+
+Choose your container execution mode type
+++++++++++++++++++++++++++++++++++++++++++
+
+If you want to use a container execution mode, use the following decision tree to decide which kind of container execution mode works best for your project needs.
+
+.. mermaid::
+
+  %%{init: {'theme':'base', 'themeVariables': { 'fontSize': '15px'}}}%%
+  flowchart TD
+
+    A([Execution in a Container])
+
+    B[Do you run container from Airflow worker node?]
+    C[ExecutionMode.DOCKER]
+
+    D[Do you have a Kubernetes cluster?]
+
+    E[Try experimental high-performance mode?]
+    F[ExecutionMode.WATCHER_KUBERNETES]
+
+    G[ExecutionMode.KUBERNETES]
+
+    H[Are you an AWS user?]
+    I[Use AWS managed Kubernetes EKS?]
+    J[ExecutionMode.AWS_EKS]
+    K[ExecutionMode.AWS_ECS]
+
+    L[Are you an Azure user?]
+    M[ExecutionMode.AZURE_CONTAINER_INSTANCE]
+
+    N[Are you a GCP user?]
+    O[ExecutionMode.GCP_CLOUD_RUN_JOB]
+
+    P[Review container execution options]
+
+    A --> B
+    B -->|Yes| C
+    B -->|No| D
+
+    D -->|Yes| E
+    D -->|No| H
+
+    E -->|Yes| F
+    E -->|No| G
+
+    H -->|Yes| I
+    H -->|No| L
+
+    I -->|Yes| J
+    I -->|No| K
+
+    L -->|Yes| M
+    L -->|No| N
+
+    N -->|Yes| O
+    N -->|No| P
+
+    classDef decision fill:#fff3cd,stroke:#b58900,color:#333
+    classDef action fill:#e8f5e9,stroke:#2e7d32,color:#333
+    classDef result fill:#e3f2fd,stroke:#1565c0,color:#333
+
+    class B,D,E,H,I,L,N decision
+    class J,K,M,O action
+    class C,F,G,P result
+
 
 .. _execution-modes-comparison:
 

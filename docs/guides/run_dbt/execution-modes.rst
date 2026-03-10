@@ -11,6 +11,53 @@ There are two categories of execution modes:
 
 2. **Execute dbt commands in a container** This type of execution mode offers high levels of environment isolation and also allows you to run dbt from either containers or external jobs, in both on-premises environments and various cloud services. There are multiple options for this type of execution mode: ``docker``, ``kubernetes``, ``watcher_kubernetes``, ``aws_ecs``, ``aws_eks``, ``azure_container_instance``, and ``gcp_cloud_run_job``.
 
+Choose between local and container execution mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+.. mermaid::
+
+    %%{init: {'theme':'base', 'themeVariables': { 'fontSize': '15px'}}}%%
+    flowchart TD
+      A([Start: How will dbt run from Airflow?])
+      B[Can dbt be installed in the Airflow deployment?]
+      C[Same Python env as Airflow?]
+      E[Can you create an isolated dbt virtualenv?]
+      G[Let Cosmos manage dbt virtualenvs?]
+      D[Install dbt in Airflow requirements.txt]
+      F[Pre-create dbt virtualenv in Dockerfile or startup script]
+      I[Cosmos-managed dbt virtualenvs]
+      H[Use container execution]
+      J[Run dbt on Airflow worker node]
+      K([Go to Local Execution Mode decision])
+      L[Run dbt in a container]
+      M([Go to Container Execution Mode decision])
+
+      A --> B
+      B -->|Yes| C
+      B -->|No| H
+      C -->|Yes| D
+      C -->|No| E
+      E -->|Yes| F
+      E -->|No| G
+      G -->|Yes| I
+      G -->|No| H
+      D --> J
+      F --> J
+      I --> J
+      J --> K
+      H --> L
+      L --> M
+
+      classDef decision fill:#fff3cd,stroke:#b58900,color:#333
+      classDef action fill:#e8f5e9,stroke:#2e7d32,color:#333
+      classDef result fill:#e3f2fd,stroke:#1565c0,color:#333
+      class B,C,E,G decision
+      class D,F,I action
+      class J,L,K,M result
+
+
 
 On the Airflow worker
 ~~~~~~~~~~~~~~~~~~~~~~
